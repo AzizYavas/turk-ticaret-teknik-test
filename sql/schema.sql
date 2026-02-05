@@ -64,13 +64,16 @@ CREATE TABLE IF NOT EXISTS cart_items (
     id INT AUTO_INCREMENT PRIMARY KEY COMMENT 'Sepet öğesi ID',
     cart_id INT NOT NULL COMMENT 'Sepet ID',
     product_id INT NOT NULL COMMENT 'Ürün ID',
+    variant_id INT NULL COMMENT 'Varyant ID (opsiyonel)',
     quantity INT NOT NULL DEFAULT 1 COMMENT 'Miktar',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT 'Oluşturma tarihi',
     FOREIGN KEY (cart_id) REFERENCES carts(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (variant_id) REFERENCES product_variants(id) ON DELETE SET NULL ON UPDATE CASCADE,
     INDEX idx_cart (cart_id),
     INDEX idx_product (product_id),
-    UNIQUE KEY unique_cart_product (cart_id, product_id)
+    INDEX idx_variant (variant_id),
+    UNIQUE KEY unique_cart_product_variant (cart_id, product_id, variant_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Sepet öğeleri tablosu';
 
 -- Favoriler Tablosu
