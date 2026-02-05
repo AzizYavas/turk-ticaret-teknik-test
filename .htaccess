@@ -1,0 +1,8 @@
+# Ana dizinden public klasörüne yönlendirme
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Public klasörüne yönlendir
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

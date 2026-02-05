@@ -1,0 +1,659 @@
+{
+	"info": {
+		"name": "Türk Ticaret E-Ticaret API",
+		"description": "E-ticaret API koleksiyonu - Ürün ve Kategori yönetimi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080/turkticaret_test",
+			"type": "string"
+		},
+		{
+			"key": "host",
+			"value": "localhost",
+			"type": "string"
+		},
+		{
+			"key": "port",
+			"value": "8080",
+			"type": "string"
+		},
+		{
+			"key": "base_path",
+			"value": "turkticaret_test",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Ürünler",
+			"item": [
+				{
+					"name": "Tüm Ürünleri Listele",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products?page=1&limit=10&sort=price_desc",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "products"],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Sayfa numarası"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Sayfa başı ürün sayısı (default: 10)"
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "Arama terimi",
+									"disabled": true
+								},
+								{
+									"key": "category_id",
+									"value": "",
+									"description": "Kategori filtresi",
+									"disabled": true
+								},
+								{
+									"key": "min_price",
+									"value": "",
+									"description": "Minimum fiyat",
+									"disabled": true
+								},
+								{
+									"key": "max_price",
+									"value": "",
+									"description": "Maksimum fiyat",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "price_desc",
+									"description": "Sıralama (price_asc, price_desc, name_asc, name_desc)"
+								}
+							]
+						},
+						"description": "Tüm ürünleri listeler. Pagination, filtreleme ve sıralama desteği vardır."
+					},
+					"response": []
+				},
+				{
+					"name": "Ürün Detayı",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/1",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "products", "1"]
+						},
+						"description": "ID'ye göre tek ürün detayını getirir."
+					},
+					"response": []
+				},
+				{
+					"name": "Kategoriye Göre Filtrele",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products?category_id=1",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "products"],
+							"query": [
+								{
+									"key": "category_id",
+									"value": "1",
+									"description": "Kategori ID"
+								}
+							]
+						},
+						"description": "Belirli bir kategoriye ait ürünleri listeler."
+					},
+					"response": []
+				},
+				{
+					"name": "Fiyat Aralığına Göre Filtrele",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products?min_price=100&max_price=1000",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "products"],
+							"query": [
+								{
+									"key": "min_price",
+									"value": "100",
+									"description": "Minimum fiyat"
+								},
+								{
+									"key": "max_price",
+									"value": "1000",
+									"description": "Maksimum fiyat"
+								}
+							]
+						},
+						"description": "Belirli fiyat aralığındaki ürünleri listeler."
+					},
+					"response": []
+				},
+				{
+					"name": "Ürün Ara",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products?search=iphone",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "products"],
+							"query": [
+								{
+									"key": "search",
+									"value": "iphone",
+									"description": "Arama terimi"
+								}
+							]
+						},
+						"description": "İsim veya açıklamada arama yapar."
+					},
+					"response": []
+				},
+				{
+					"name": "Fiyata Göre Sırala (Artan)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products?sort=price_asc",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "products"],
+							"query": [
+								{
+									"key": "sort",
+									"value": "price_asc",
+									"description": "Fiyata göre artan sıralama"
+								}
+							]
+						},
+						"description": "Ürünleri fiyata göre artan sırada listeler."
+					},
+					"response": []
+				},
+				{
+					"name": "Fiyata Göre Sırala (Azalan)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products?sort=price_desc",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "products"],
+							"query": [
+								{
+									"key": "sort",
+									"value": "price_desc",
+									"description": "Fiyata göre azalan sıralama"
+								}
+							]
+						},
+						"description": "Ürünleri fiyata göre azalan sırada listeler."
+					},
+					"response": []
+				},
+				{
+					"name": "İsme Göre Sırala (A-Z)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products?sort=name_asc",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "products"],
+							"query": [
+								{
+									"key": "sort",
+									"value": "name_asc",
+									"description": "İsme göre A-Z sıralama"
+								}
+							]
+						},
+						"description": "Ürünleri isme göre A-Z sırada listeler."
+					},
+					"response": []
+				},
+				{
+					"name": "İsme Göre Sırala (Z-A)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products?sort=name_desc",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "products"],
+							"query": [
+								{
+									"key": "sort",
+									"value": "name_desc",
+									"description": "İsme göre Z-A sıralama"
+								}
+							]
+						},
+						"description": "Ürünleri isme göre Z-A sırada listeler."
+					},
+					"response": []
+				},
+				{
+					"name": "Kombine Filtreleme ve Sıralama",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products?category_id=1&min_price=1000&max_price=50000&search=iphone&sort=price_asc&page=1&limit=5",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "products"],
+							"query": [
+								{
+									"key": "category_id",
+									"value": "1",
+									"description": "Kategori filtresi"
+								},
+								{
+									"key": "min_price",
+									"value": "1000",
+									"description": "Minimum fiyat"
+								},
+								{
+									"key": "max_price",
+									"value": "50000",
+									"description": "Maksimum fiyat"
+								},
+								{
+									"key": "search",
+									"value": "iphone",
+									"description": "Arama terimi"
+								},
+								{
+									"key": "sort",
+									"value": "price_asc",
+									"description": "Sıralama (price_asc, price_desc, name_asc, name_desc)"
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Sayfa numarası"
+								},
+								{
+									"key": "limit",
+									"value": "5",
+									"description": "Sayfa başı ürün sayısı"
+								}
+							]
+						},
+						"description": "Tüm filtreleme ve sıralama özelliklerini birlikte kullanır."
+					},
+					"response": []
+				}
+			],
+			"description": "Ürün yönetimi endpoint'leri"
+		},
+		{
+			"name": "Kategoriler",
+			"item": [
+				{
+					"name": "Tüm Kategorileri Listele",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/categories",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "categories"]
+						},
+						"description": "Tüm kategorileri listeler."
+					},
+					"response": []
+				}
+			],
+			"description": "Kategori yönetimi endpoint'leri"
+		},
+		{
+			"name": "Sepet",
+			"item": [
+				{
+					"name": "Sepeti Görüntüle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/cart",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "cart"]
+						},
+						"description": "Sepeti görüntüler (ürünler + toplam tutar)."
+					},
+					"response": []
+				},
+				{
+					"name": "Sepete Ürün Ekle",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product_id\": 1,\n    \"quantity\": 2,\n    \"variant_id\": null\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/cart",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "cart"]
+						},
+						"description": "Sepete ürün ekler veya mevcut ürünün miktarını artırır. variant_id opsiyoneldir (ürün varyantı için)."
+					},
+					"response": []
+				},
+				{
+					"name": "Sepet Birleştir",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"session_id\": \"abc123xyz\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/cart/merge",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "cart", "merge"]
+						},
+						"description": "Başka bir session'dan sepeti mevcut sepete birleştirir. Stok kontrolü yapılır."
+					},
+					"response": []
+				},
+				{
+					"name": "Ürün Miktarını Güncelle",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantity\": 5,\n    \"variant_id\": null\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/cart/1",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "cart", "1"]
+						},
+						"description": "Sepetteki ürünün miktarını günceller. Miktar 0 ise ürün sepetten çıkarılır. variant_id opsiyoneldir."
+					},
+					"response": []
+				},
+				{
+					"name": "Sepetten Ürün Çıkar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/cart/1",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "cart", "1"]
+						},
+						"description": "Sepetten belirli bir ürünü çıkarır."
+					},
+					"response": []
+				},
+				{
+					"name": "Sepeti Temizle",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/cart",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "cart"]
+						},
+						"description": "Sepeti tamamen temizler."
+					},
+					"response": []
+				}
+			],
+			"description": "Sepet yönetimi endpoint'leri"
+		},
+		{
+			"name": "Favoriler",
+			"item": [
+				{
+					"name": "Favori Listesini Görüntüle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/favorites",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "favorites"]
+						},
+						"description": "Favori listesini görüntüler."
+					},
+					"response": []
+				},
+				{
+					"name": "Favorilere Ürün Ekle",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/favorites",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "favorites"]
+						},
+						"description": "Favorilere ürün ekler."
+					},
+					"response": []
+				},
+				{
+					"name": "Favorilerden Ürün Çıkar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/favorites/1",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "favorites", "1"]
+						},
+						"description": "Favorilerden belirli bir ürünü çıkarır."
+					},
+					"response": []
+				},
+				{
+					"name": "Favori Ürünü Sepete Ekle",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantity\": 2\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/favorites/1/add-to-cart",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "favorites", "1", "add-to-cart"]
+						},
+						"description": "Favori ürünü direkt sepete ekler."
+					},
+					"response": []
+				}
+			],
+			"description": "Favori yönetimi endpoint'leri"
+		},
+		{
+			"name": "Kuponlar",
+			"item": [
+				{
+					"name": "Kupon Doğrula",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"SAVE10\",\n    \"cart_total\": 100.00\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/coupons/validate",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "coupons", "validate"]
+						},
+						"description": "Kupon kodunu doğrular. cart_total opsiyoneldir, minimum sepet tutarı kontrolü için kullanılır."
+					},
+					"response": []
+				},
+				{
+					"name": "Kuponu Sepete Uygula",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"SAVE10\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/coupons/apply",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "coupons", "apply"]
+						},
+						"description": "Kuponu sepete uygular. Sepet tutarı otomatik hesaplanır ve minimum tutar kontrolü yapılır."
+					},
+					"response": []
+				},
+				{
+					"name": "Kuponu Kaldır",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/coupons",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "coupons"]
+						},
+						"description": "Sepete uygulanmış kuponu kaldırır."
+					},
+					"response": []
+				}
+			],
+			"description": "Kupon yönetimi endpoint'leri"
+		},
+		{
+			"name": "Son Görüntülenenler",
+			"item": [
+				{
+					"name": "Son Görüntülenen Ürünleri Listele",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/recently-viewed",
+							"host": ["{{host}}"],
+							"port": "{{port}}",
+							"path": ["{{base_path}}", "api", "recently-viewed"]
+						},
+						"description": "Kullanıcının son görüntülediği ürünleri listeler (session bazlı)."
+					},
+					"response": []
+				}
+			],
+			"description": "Son görüntülenen ürünler endpoint'leri"
+		},
+		{
+			"name": "API Bilgisi",
+			"item": [
+				{
+					"name": "Root - API Bilgisi",
+					"request": {
+						"method": "GET",
+						"header": [],
+					"url": {
+						"raw": "{{base_url}}/",
+						"host": ["{{host}}"],
+						"port": "{{port}}",
+						"path": ["{{base_path}}", ""]
+					},
+						"description": "API hakkında bilgi ve mevcut endpoint'leri döndürür."
+					},
+					"response": []
+				}
+			],
+			"description": "API bilgi endpoint'leri"
+		}
+	]
+}
+

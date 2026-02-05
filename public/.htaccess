@@ -1,0 +1,9 @@
+# Public klasörü için yönlendirme
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Eğer dosya yoksa index.php'ye yönlendir (API routing için)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
